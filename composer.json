@@ -5,18 +5,21 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.5.9",
-        "laravel/framework": "5.1.*",
+        "php": "^7.0.0",
+        "fideloper/proxy": "~3.3",
+        "laravel/framework": "~5.5.44",
+        "laravel/tinker": "^1.0",
         "jms/serializer": "^1.0",
         "composer/composer": "^1.4",
-        "composer/satis": "^1.0@alpha"
+        "composer/satis": "^1.0"
     },
     "require-dev": {
+        "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1",
-        "barryvdh/laravel-ide-helper": "^2.1"
+        "mockery/mockery": "~1.0",
+        "phpunit/phpunit": "~6.0",
+        "symfony/thanks": "^1.0",
+        "barryvdh/laravel-ide-helper": "^2.5"
     },
     "autoload": {
         "classmap": [
@@ -31,19 +34,12 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "npm install",
-            "npm run build"
-        ],
-        "pre-autoload-dump": [
-            "php artisan clear-compiled"
-        ],
-        "post-autoload-dump": [
-            "php artisan optimize"
-        ],
-        "post-create-project-cmd": [
-            "mkdir -p storage/logs/async",
+            "php artisan clear-compiled",
             "cp example.env .env",
-            "cp resources/satis.json.dist resources/satis.json"
+            "mkdir -p storage/logs/async",
+            "npm install",
+            "npm run build",
+            "node_modules/.bin/gulp init"
         ]
     },
     "config": {
